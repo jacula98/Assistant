@@ -1,6 +1,7 @@
 import sys
 import psutil
 import GPUtil
+import speech_recognition as sr
 from PyQt5.QtGui import QBrush, QColor
 from PyQt5.QtSvg import QSvgWidget, QGraphicsSvgItem, QSvgRenderer
 from PyQt5.QtCore import Qt, QTimer, QPoint
@@ -122,6 +123,7 @@ class Dialog(QDialog):
 
         self.progress_bars_visible = True
 
+
     def toggle_progress_bars(self):
         # Przełącz widoczność pasków postępu
         self.progress_bars_visible = not self.progress_bars_visible
@@ -146,8 +148,6 @@ class Dialog(QDialog):
             self.widget.setGeometry(0, 0, 150, 150)
             self.resource_label.setGeometry(10, 35, 180, 80)
             self.emoji_label.setGeometry(45, 90, 55, 55)
-
-        
 
     def update_resource_info(self):
         # Pobierz informacje o CPU, GPU, temperaturze GPU, RAM i mocy sieci Wi-Fi
@@ -187,9 +187,6 @@ class Dialog(QDialog):
 
         stylesheet = f'QProgressBar::chunk {{ background-color: {color}; }}'
         progress_bar.setStyleSheet(stylesheet)
-
-    def set_bold_color(self, label):
-        label.setStyleSheet('font-weight: bold; color: #33FFFF;')
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
